@@ -34,7 +34,7 @@ function agendarServico(nome) {
 
   console.log(`Agendamento feito para ${nome}, serviço: ${servicoEscolhido.nome}, valor: R$${servicoEscolhido.preco}`);
 
-  // Exemplo de integração com API de pagamento
+  //  integração com API de pagamento
   fetch("http://localhost:3000/pagamentos", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -49,6 +49,6 @@ function agendarServico(nome) {
     .catch(err => console.error("Erro no pagamento:", err));
 }
 
-// Exemplo de chamada
+// chamada
 agendarServico();
 
