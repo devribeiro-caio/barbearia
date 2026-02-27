@@ -162,13 +162,6 @@ Melhor experiência de agendamento online
 
 👨‍💻 Autor
 Caio Ribeiro  
-Projeto acadêmico e prático de integração de sistemas com pagamentos digitais.
+Projeto Pessoal.
 
 
----
-
-👉 Agora você tem dois arquivos essenciais na raiz do projeto:
-- `.gitignore` (para manter o repositório leve e limpo)
-- `README.md` (para deixar o repositório bonito e profissional)
-
-Quer que eu te mostre o comando exato para criar esses dois arquivos direto pelo terminal, sem precisar abrir no VS Code?
