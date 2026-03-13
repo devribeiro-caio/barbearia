@@ -1,3 +1,4 @@
 node_modules/
 .env
-oracleJdk-21/
+.DS_Store
+*.log
