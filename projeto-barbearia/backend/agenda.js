@@ -1,11 +1,11 @@
-const prompt = require("prompt-sync")({ sigint: true });
-const { db } = require("./src/config/database");
+﻿const prompt = require("prompt-sync")({ sigint: true });
+const contatoModel = require("./src/models/contato.model");
 
 const SERVICOS = [
   { id: 1, nome: "Corte de Cabelo", preco: 35 },
   { id: 2, nome: "Barba", preco: 20 },
   { id: 3, nome: "Corte + Barba", preco: 50 },
-  { id: 4, nome: "Corte + Luzes", preco: 100 }
+  { id: 4, nome: "Corte + Luzes", preco: 100 },
 ];
 
 async function agendaCLI() {
@@ -19,9 +19,9 @@ async function agendaCLI() {
   const horario = prompt("Horário (HH:MM): ");
 
   console.log("\nServiços:");
-  SERVICOS.forEach(s => console.log(`${s.id}. ${s.nome} (R$ ${s.preco.toFixed(2)})`));
+  SERVICOS.forEach((s) => console.log(`${s.id}. ${s.nome} (R$ ${s.preco.toFixed(2)})`));
   const escolha = parseInt(prompt("\nEscolha o número do serviço: "));
-  const servico = SERVICOS.find(s => s.id === escolha);
+  const servico = SERVICOS.find((s) => s.id === escolha);
 
   if (!servico) {
     console.error("\n[ERRO] Serviço inválido!");
@@ -33,7 +33,7 @@ async function agendaCLI() {
   console.log(`Data: ${data} às ${horario}`);
   console.log(`Serviço: ${servico.nome}`);
   console.log(`Valor: R$ ${servico.preco.toFixed(2)}`);
-  
+
   const confirmar = prompt("\nConfirma o agendamento? (s/n): ").toLowerCase();
   if (confirmar !== 's') {
     console.log("\nAgendamento cancelado.");
@@ -41,12 +41,17 @@ async function agendaCLI() {
   }
 
   try {
-    const sql = "INSERT INTO contatos (nome_cliente, telefone_cliente, data, horario, corte_cabelo) VALUES (?, ?, ?, ?, ?)";
-    const [result] = await db.query(sql, [nome, telefone, data, horario, servico.nome]);
-    
+    const created = await contatoModel.create({
+      nome_cliente: nome,
+      telefone_cliente: telefone,
+      data,
+      horario,
+      corte_cabelo: servico.nome,
+    });
+
     console.log("\n====================================");
     console.log("   AGENDAMENTO SALVO COM SUCESSO!   ");
-    console.log(`   ID: ${result.insertId} | Valor: R$ ${servico.preco.toFixed(2)} `);
+    console.log(`   ID: ${created.id} | Valor: R$ ${servico.preco.toFixed(2)} `);
     console.log("====================================\n");
   } catch (err) {
     console.error("\n[ERRO] Falha ao salvar no banco:", err.message);

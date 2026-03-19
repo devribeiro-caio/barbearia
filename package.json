@@ -11,7 +11,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node projeto-barbearia/backend/src/server.js",
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "build": "vite build",
+    "build:frontend": "vite build",
+    "preview": "vite preview",
+    "build:css": "tailwindcss -i ./projeto-barbearia/frontend/css/tailwind-input.css -o ./projeto-barbearia/frontend/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./projeto-barbearia/frontend/css/tailwind-input.css -o ./projeto-barbearia/frontend/css/tailwind.css --watch"
   },
   "repository": {
     "type": "git",
@@ -24,5 +30,13 @@
   "bugs": {
     "url": "https://github.com/devribeiro-caio/barbearia/issues"
   },
-  "homepage": "https://github.com/devribeiro-caio/barbearia#readme"
+  "homepage": "https://github.com/devribeiro-caio/barbearia#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "@tailwindcss/postcss": "^4.2.2",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.2",
+    "vite": "^8.0.0"
+  }
 }
